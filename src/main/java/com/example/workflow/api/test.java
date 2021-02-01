@@ -1,5 +1,7 @@
 package com.example.workflow.api;
 
+import org.springframework.web.bind.annotation.RestController;
+
 /**
  * @BelongsProject: work-flow
  * @BelongsPackage: com.example.workflow.api
@@ -7,6 +9,6 @@ package com.example.workflow.api;
  * @CreateTime: 2021-02-01 15:55.
  * @Description:
  */
-
+@RestController
 public class test {
 }
