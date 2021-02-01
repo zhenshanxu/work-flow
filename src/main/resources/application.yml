@@ -1,0 +1,28 @@
+server:
+  port: 8098
+spring:
+  mvc:
+    static-path-pattern: /static/**
+  datasource: ## todo 为配置
+    url:  jdbc:mysql://localhost:3307/tree?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone = GMT
+    username: #数据库用户
+    password: #******#数据库密码
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    dbcp2:
+      initial-size: 5
+      max-idle: 10
+      min-idle: 5
+      max-wait-millis: 10000
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  redis:  # todo red
+    host: #host
+    password: # password
+    port: # port
+    timeout: 5000ms
+  data:
+    mongodb:
+      uri: mongodb://root:password@host:port/user # password 密码 @ host主机地址:post 端口/用户名
+      database: test # 仓库
