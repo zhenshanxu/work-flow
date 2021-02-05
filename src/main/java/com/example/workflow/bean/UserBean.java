@@ -20,4 +20,6 @@ import lombok.ToString;
 public class UserBean {
 
     private int id;
+
+    private String name;
 }
