@@ -19,4 +19,5 @@ import lombok.ToString;
 @NoArgsConstructor
 public class UserBean {
 
+    private int id;
 }
