@@ -37,4 +37,9 @@ public class UserBean {
      * 联系方式
      */
     private String phone;
+
+    /**
+     * 密码
+     */
+    private String password;
 }
