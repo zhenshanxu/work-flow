@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.data.annotation.Id;
 
 /**
  * @BelongsProject: work-flow
@@ -19,9 +20,21 @@ import lombok.ToString;
 @NoArgsConstructor
 public class UserBean {
 
+    @Id
     private int id;
 
+    /**
+     * 用户名
+     */
     private String name;
 
+    /**
+     * 邮件
+     */
     private String email;
+
+    /**
+     * 联系方式
+     */
+    private String phone;
 }
