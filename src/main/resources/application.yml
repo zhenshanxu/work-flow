@@ -17,10 +17,17 @@ spring:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
-  redis:  # todo red
-    host: #host
-    password: # password
-    port: # port
+  redis:  # Redis 配置
+    database: 1  #数据库索引(默认为0)
+    host: 127.0.0.1
+    port: 6379  #默认链接端口
+    password: ""  #默认空的
+    lettuce:
+      pool:
+        max-wait: -1 #最大阻赛等待时间（使用负值没有限制）默认为-1
+        max-active: 8 #最大链接池
+        max-idle: 8 #连接池中的最大空闲连接 默认 8
+        min-idle: 0
     timeout: 5000ms
   data:
     mongodb:
