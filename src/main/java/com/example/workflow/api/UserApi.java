@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description:
  */
 @RestController
-public class test {
+public class UserApi {
 }
