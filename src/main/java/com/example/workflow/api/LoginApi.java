@@ -22,17 +22,15 @@ public class LoginApi {
 
     @ApiOperation("用户登录")
     @PostMapping("/api/login")
-    public ResponseBean login(@RequestBody UserBean userBean) {
+    public ResponseBean login(@RequestBody UserBean userBean){
         ResponseBean response = new ResponseBean();
-        try {
+        try{
             response.setSuccess(true);
             response.setResult(userBean);
-        } catch (Exception e) {
+        }catch (Exception e){
             response.setSuccess(false);
             response.setErrorMessage("用户名或者密码错误！");
         }
         return response;
     }
-
-    ;
 }
