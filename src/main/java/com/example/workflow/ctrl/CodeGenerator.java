@@ -71,14 +71,14 @@ public class CodeGenerator {
                 .setServiceImplName("I%sServiceImpl")
                 .setControllerName("%sApi");
 
-        //=======  数据源配置 =======
+        //======= 数据源配置 =======
         DataSourceConfig dataSource = new DataSourceConfig();
         dataSource.setUrl(JDBC_URL)
                 .setDriverName(DRIVER_NAME)
                 .setUsername(USERNAME)
                 .setPassword(PASSWORD);
 
-        //=======  包 配置 =======
+        //======= 包 配置 =======
         PackageConfig packageConfig = new PackageConfig();
         packageConfig.setParent(PACKAGE_NAME)
                 .setService("service")
@@ -87,8 +87,13 @@ public class CodeGenerator {
                 .setMapper("dao")
                 .setXml("mapper");
 
+        //======= 模板配置 =======
+        // 如果模板引擎是 freemarker
+        String templatePath = "/templates/mapper.xml.ftl";
+        // 如果模板引擎是 velocity
+        // String templatePath = "/templates/mapper.xml.vm";
 
-        //=======  策略配置 =======
+        //======= 策略配置 =======
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel)// 表名
                 .setColumnNaming(NamingStrategy.underline_to_camel)// 字段

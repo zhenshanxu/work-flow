@@ -1,6 +1,29 @@
-# work-flow
-## 记录工作项目流程进度
-###---------------------------------------------
-#### 1. 使用 Swagger 工具
-#### 2. 使用 AutoGenerator 代码生成工具
-#####    2.1. AutoGenerator 是 MyBatis-Plus 的代码生成器，通过 AutoGenerator 可以快速生成 Entity、Mapper、Mapper XML、Service、Controller 等各个模块的代码
+work-flow
+============
+
+当前最新 ： 1.0 (项目开发中...)
+
+## 后端技术框架
+- 基础框架：Spring Boot 2.4.2
+
+- 持久层框架：Mybatis-plus 3.4.1
+
+- 安全框架：Jwt 3.11.0（暂未配置）
+
+- 数据库连接池：阿里巴巴Druid 1.1.22
+
+- 缓存框架：redis
+
+- 其他：Swagger-ui，lombok（简化代码）等
+
+## 开发环境
+
+- 语言：Java 8
+
+- IDE(JAVA)： Eclipse安装lombok插件 或者 IDEA
+
+- 依赖管理：Maven
+
+- 数据库：MySQL5.7+  &  Oracle 11g
+
+- 缓存：Redis
