@@ -1,5 +1,7 @@
 package com.example.workflow.utils;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @BelongsProject: work-flow
  * @BelongsPackage: com.example.workflow.util
@@ -8,5 +10,7 @@ package com.example.workflow.utils;
  * @Description:
  */
 
+@Component
 public class CommonUtil {
+
 }
