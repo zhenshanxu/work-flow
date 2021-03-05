@@ -7,8 +7,7 @@ import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @BelongsProject: work-flow
@@ -28,6 +27,11 @@ public class CodeGenerator {
     //生成代码的表名
     private static final String TABLE_NAME = "sys_user";
 
+    /**
+     * 输出文件的路径
+     * //位置根据用户
+     */
+    private static final String OUT_PATH = "E:\\projectCode\\idea_workspace\\modelCode\\work-flow";
     //数据库相关配置
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/work_flow?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone = GMT";
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
@@ -46,8 +50,8 @@ public class CodeGenerator {
      * @param s
      * @return
      */
-    public static String toLowerCaseFirstOne(String s){
-        if(Character.isLowerCase(s.charAt(0))) {
+    public static String toLowerCaseFirstOne(String s) {
+        if (Character.isLowerCase(s.charAt(0))) {
             return s;
         } else {
             return (new StringBuilder()).append(Character.toLowerCase(s.charAt(0))).append(s.substring(1)).toString();
@@ -63,6 +67,8 @@ public class CodeGenerator {
                 .setAuthor(AUTHOR)
                 .setOpen(false)
                 .setFileOverride(false)
+                .setBaseResultMap(false)// XML ResultMap
+                .setBaseColumnList(true)// XML columList
                 .setSwagger2(true)//实体属性 Swagger2 注解
                 //自定义文件命名，注意 %s 会自动填充表实体属性！
                 .setEntityName("%sBean")
@@ -87,11 +93,35 @@ public class CodeGenerator {
                 .setMapper("dao")
                 .setXml("mapper");
 
-        //======= 模板配置 =======
+        //======= 自定义配置 =======
+        InjectionConfig injectionConfig = new InjectionConfig() {
+            @Override
+            public void initMap() {
+                Map<String, Object> map = new HashMap<String, Object>();
+                map.put("abc", this.getConfig().getGlobalConfig().getAuthor() + "-mp");
+                this.setMap(map);
+            }
+        };
         // 如果模板引擎是 freemarker
-        String templatePath = "/templates/mapper.xml.ftl";
+//        String templatePath = "/templates/mapper.xml.ftl";
         // 如果模板引擎是 velocity
-        // String templatePath = "/templates/mapper.xml.vm";
+         String templatePath = "/templates/mapper.xml.vm";
+        //自定义输出配置
+        List<FileOutConfig> focList = new ArrayList<>();
+        //自定义配置会被优先输出
+        focList.add(new FileOutConfig(templatePath) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
+                String entityName = toLowerCaseFirstOne(tableInfo.getEntityName().split("Bean")[0]);
+                return OUT_PATH + "/src/main/resources/mapper/" + entityName + "Mapper.xml";
+            }
+        });
+        injectionConfig.setFileOutConfigList(focList);
+
+        //======= 模板配置 =======
+        TemplateConfig templateConfig = new TemplateConfig();
+        templateConfig.setXml(null);
 
         //======= 策略配置 =======
         StrategyConfig strategy = new StrategyConfig();
@@ -110,6 +140,8 @@ public class CodeGenerator {
                 .setDataSource(dataSource)
                 .setPackageInfo(packageConfig)
                 .setStrategy(strategy)
+                .setCfg(injectionConfig)
+                .setTemplate(templateConfig)
                 .execute();
     }
 }
