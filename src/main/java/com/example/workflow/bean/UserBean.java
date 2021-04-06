@@ -42,4 +42,9 @@ public class UserBean extends AssistBean{
      * 密码
      */
     private String password;
+
+    /**
+     * 状态，是否删除 1：正常，0删除
+     */
+    private int isDelete;
 }

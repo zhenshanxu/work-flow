@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.workflow.mapper.UserMapper">
+
+    <!--查询用户-->
+    <select id="queryUser" resultType="com.example.workflow.bean.UserBean">
+        select * from sys_user
+        <where>
+            1=1
+            <if test="phone!=null and phone!=''">
+                and phone=#{phone}
+            </if>
+            <if test="password!=null and password!=''">
+                and password=#{password}
+            </if>
+            <if test="email!=null and email!=''">
+                and email=#{email}
+            </if>
+            <if test="name!=null and name!=''">
+                and name=#{name}
+            </if>
+        </where>
+    </select>
+    <!--根据用户名查询用户信息-->
+    <select id="queryUserByPhone" resultType="com.example.workflow.bean.UserBean">
+        select * from sys_user
+        <where>
+            1=1
+            <if test="phone!=null and phone!='0' and phone!=''">
+                and phone=#{phone}
+            </if>
+        </where>
+    </select>
+    <!--新增用户-->
+    <insert id="addUser" parameterType="com.example.workflow.bean.UserBean" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name !=null and name !=''">`name`,</if>
+            <if test="phone !=null and phone !=''">phone,</if>
+            <if test="email !=null and email !=''">email,</if>
+            <if test="password !=null and password !=''">password,</if>
+            <if test="isDelete !=null and isDelete !=''">is_Delete</if>
+        </trim>
+        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+            <if test="name !=null and name !=''">#{name},</if>
+            <if test="phone !=null and phone !=''">#{phone},</if>
+            <if test="email !=null and email !=''">#{email},</if>
+            <if test="password !=null and password !=''">#{password},</if>
+            <if test="isDelete !=null and isDelete !=''">#{isDelete} </if>
+        </trim>
+    </insert>
+    <update id="userUpdate" parameterType="com.example.workflow.bean.UserBean">
+        update sys_user
+        <set>
+            <if test="name!=null and name!=''">`name``=#{name},</if>
+            <if test="phone!=null and phone!=''">phone=#{phone},</if>
+            <if test="email!=null and email!=''">email=#{email},</if>
+            <if test="password!=null and password!=''">password=#{password},</if>
+            <if test="isDelete!=null and isDelete!=''">is_delete=#{is_Delete} q</if>
+        </set>
+
+    </update>
+</mapper>

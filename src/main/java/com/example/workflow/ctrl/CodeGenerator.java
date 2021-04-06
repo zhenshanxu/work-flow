@@ -1,6 +1,5 @@
 package com.example.workflow.ctrl;
 
-import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
@@ -31,12 +30,12 @@ public class CodeGenerator {
      * 输出文件的路径
      * //位置根据用户
      */
-    private static final String OUT_PATH = "E:\\projectCode\\idea_workspace\\modelCode\\work-flow";
+    private static final String OUT_PATH = "D:\\workingSpace\\codeStorage\\GitCode\\work-flow";
     //数据库相关配置
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/work_flow?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone = GMT";
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "mysql@password";
+    private static final String PASSWORD = "password";
 
     //注释显示作者
     private static final String AUTHOR = "snail";
@@ -91,7 +90,7 @@ public class CodeGenerator {
                 .setController("api")
                 .setEntity("bean")
                 .setMapper("dao")
-                .setXml("mapper");
+                .setXml("com");
 
         //======= 自定义配置 =======
         InjectionConfig injectionConfig = new InjectionConfig() {
