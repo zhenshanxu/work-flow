@@ -35,4 +35,16 @@ public class AssistBean {
      * 修改时间
      */
     private long modifyTime;
+    /**
+     * 当前页数
+     */
+    private int page;
+    /**
+     * 每页数量
+     */
+    private int pageSize;
+    /**
+     * 总数
+     */
+    private int total;
 }
