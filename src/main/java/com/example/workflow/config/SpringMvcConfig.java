@@ -1,6 +1,7 @@
 package com.example.workflow.config;
 
 import com.example.workflow.interceptors.LoginInterceptor;
+import com.example.workflow.interceptors.TokenInterceptor;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -19,11 +20,11 @@ public class SpringMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
-        registry.
-                addInterceptor(new LoginInterceptor()).
-//                addPathPatterns("/**").
-//                excludePathPatterns("/").
-//                excludePathPatterns("/api/user/userLogin").
+        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(new TokenInterceptor()).
+                addPathPatterns("/**").
+                excludePathPatterns("/").
+                excludePathPatterns("/api/user/userLogin").
                 excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**");
     }
 
