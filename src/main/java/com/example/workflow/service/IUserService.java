@@ -2,6 +2,7 @@ package com.example.workflow.service;
 
 import com.example.workflow.bean.UserBean;
 
+import java.util.List;
 import java.util.Map;
 
 public interface IUserService {
@@ -16,19 +17,28 @@ public interface IUserService {
 
     /**
      * 修改用户信息
+     *
      * @param userBean
      */
-    void userUpdate (UserBean userBean);
-    /**
-     * 根据手机号（用户名）查询用户信息
-     * @param phone
-     */
-    UserBean queeryUserByPhone(String phone);
+    void updateUser(UserBean userBean);
 
     /**
      * 新建用户
      */
     void addUser(UserBean userBean);
 
-    UserBean queeryUser(String id);
+    /**
+     * 查询用户
+     *
+     * @param userBean
+     * @return
+     */
+    List<UserBean> queryUser(UserBean userBean);
+
+    /**
+     * 删除用户
+     *
+     * @param userBean
+     */
+    void deleteUser(UserBean userBean);
 }

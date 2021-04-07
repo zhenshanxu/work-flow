@@ -1,7 +1,7 @@
 package com.example.workflow.service.impl;
 
 import com.example.workflow.bean.UserBean;
-import com.example.workflow.mapper.UserMapper;
+import com.example.workflow.dao.UserDao;
 import com.example.workflow.service.IUserService;
 import com.example.workflow.utils.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +14,12 @@ import java.util.Map;
 @Service
 public class IUserServiceImpl implements IUserService {
 
+    private final UserDao userMapper;
+
     @Autowired
-    UserMapper userMapper;
+    public IUserServiceImpl(UserDao userMapper) {
+        this.userMapper = userMapper;
+    }
 
 
     /**
@@ -24,6 +28,7 @@ public class IUserServiceImpl implements IUserService {
      * @param userBean
      * @return
      */
+    @Override
     public Map<String, Object> userLogin(UserBean userBean) {
         Map<String, Object> flag = new HashMap<>();
         String phone = userBean.getPhone();
@@ -43,36 +48,45 @@ public class IUserServiceImpl implements IUserService {
             return flag;
         }
         // todo 获取用户信息生成token ，并存储在Redis中
-        flag.put("user",userBean1);
+        flag.put("user", userBean1);
         return flag;
     }
 
     /**
-     * 各
+     * 更新用户
+     *
      * @param userBean
      */
     @Override
-    public void userUpdate(UserBean userBean) {
-
-
-    }
-
-    @Override
-    public UserBean queeryUserByPhone(String phone) {
-        return null;
+    public void updateUser(UserBean userBean) {
+        userMapper.updateUser(userBean);
     }
 
     /**
-     * 新增用户
+     * 添加用户
+     *
      * @param userBean
      */
-    public void addUser(UserBean userBean){
+    @Override
+    public void addUser(UserBean userBean) {
         userMapper.addUser(userBean);
+    }
 
+    /**
+     * 查询用户
+     *
+     * @param userBean
+     * @return
+     */
+    @Override
+    public List<UserBean> queryUser(UserBean userBean) {
+        return userMapper.queryUser(userBean);
     }
 
     @Override
-    public UserBean queeryUser(String id) {
-        return null;
+    public void deleteUser(UserBean userBean) {
+
     }
+
+
 }

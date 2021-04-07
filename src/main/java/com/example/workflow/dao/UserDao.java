@@ -1,7 +1,8 @@
-package com.example.workflow.mapper;
+package com.example.workflow.dao;
 
 import com.example.workflow.bean.UserBean;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,8 +16,8 @@ import java.util.List;
  * @since 2021-04-05
  */
 
-@Repository
-public interface UserMapper extends BaseMapper<UserBean> {
+@Mapper
+public interface UserDao extends BaseMapper<UserBean> {
 
     /**
      * 查询用户
@@ -25,20 +26,17 @@ public interface UserMapper extends BaseMapper<UserBean> {
      * @return
      */
     List<UserBean> queryUser(UserBean userBean);
-    /**
-     * 查询用户
-     *
-     * @param userBean
-     * @return
-     */
-    List<UserBean> queryUserByPhone(UserBean userBean);
+
+
     /**
      * 新增用户
+     *
      * @return
      */
-    String addUser(UserBean userBean);
+    void addUser(UserBean userBean);
+
     /**
      * 根据用户名修改信息
      */
-    void userUpdate(UserBean userBean);
+    void updateUser(UserBean userBean);
 }

@@ -2,11 +2,11 @@ server:
   port: 8098
 spring:
   mvc:
-    static-path-pattern: /static/**
+    static-path-pattern: ##/static/**
   datasource: ## todo 为配置
     url:  jdbc:mysql://localhost:3306/work_flow?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone = GMT
     username: root #数据库用户
-    password: password #数据库密码
+    password: mysql@password #数据库密码
     driver-class-name: com.mysql.cj.jdbc.Driver
     dbcp2:
       initial-size: 5
@@ -17,7 +17,17 @@ spring:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
-  redis:  # Redis 配置
+
+mybatis:
+  #  config-location: classpath:mybatis.cfg.xml
+  type-aliases-package: com.robin.studyweb.pojo
+  mapper-locations:
+    - classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+  # Redis 配置
+  redis:
     database: 1  #数据库索引(默认为0)
     host: 127.0.0.1
     port: 6379  #默认链接端口

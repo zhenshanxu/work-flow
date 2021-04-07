@@ -2,11 +2,16 @@ package com.example.workflow.api;
 
 import com.example.workflow.bean.ResponseBean;
 import com.example.workflow.bean.UserBean;
+import com.example.workflow.service.IUserService;
+import com.example.workflow.utils.CommonUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 /**
  * @BelongsProject: work-flow
@@ -20,16 +25,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginApi {
 
+    @Autowired
+    IUserService userService;
+
     @ApiOperation("用户登录")
-    @PostMapping("/api/login")
-    public ResponseBean login(@RequestBody UserBean userBean){
+    @PostMapping("/api/user/userLogin")
+    public ResponseBean userLogin(@RequestBody UserBean userBean) {
         ResponseBean response = new ResponseBean();
-        try{
-            response.setSuccess(true);
-            response.setResult(userBean);
-        }catch (Exception e){
+        try {
+            Map<String, Object> flag = userService.userLogin(userBean);
+            if (flag.containsKey(CommonUtil.ERROR_VALUE)) {
+                response.setSuccess(false);
+                response.setErrorMessage(flag.get(CommonUtil.ERROR_VALUE).toString());
+            } else {
+                response.setSuccess(true);
+                response.setResult(flag);
+            }
+
+        } catch (Exception e) {
             response.setSuccess(false);
-            response.setErrorMessage("用户名或者密码错误！");
+            response.setErrorMessage(e.getMessage());
         }
         return response;
     }
