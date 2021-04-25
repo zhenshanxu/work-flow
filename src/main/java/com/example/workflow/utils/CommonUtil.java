@@ -31,7 +31,7 @@ public class CommonUtil {
     /**
      * 私钥
      */
-    public static final String TOKEN_SECRET = "token unique encryption encoding";
+    public static final String TOKEN_SECRET = "unique encryption encoding";
 
     /**
      * JWT_ID
