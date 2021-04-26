@@ -14,7 +14,7 @@ work-flow
 
 - 缓存框架：redis
 
-- 其他：Swagger-ui，lombok（简化代码）等
+- 其他：Swagger-ui, lombok（简化代码）, Spring Boot Admin 等
 
 ## 开发环境
 
