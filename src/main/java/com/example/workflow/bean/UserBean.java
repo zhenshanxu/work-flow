@@ -18,7 +18,7 @@ import org.springframework.data.annotation.Id;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserBean extends AssistBean{
+public class UserBean extends AssistBean {
 
     @Id
     private int id;

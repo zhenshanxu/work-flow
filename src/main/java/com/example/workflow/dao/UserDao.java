@@ -1,9 +1,8 @@
 package com.example.workflow.dao;
 
-import com.example.workflow.bean.UserBean;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.workflow.bean.UserBean;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
