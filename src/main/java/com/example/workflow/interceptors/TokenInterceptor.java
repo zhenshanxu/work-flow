@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.workflow.config.JwtUtil;
 import com.example.workflow.utils.CommonUtil;
 import io.jsonwebtoken.Claims;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +15,7 @@ import java.io.PrintWriter;
  * @author Administrator
  */
 
-public class TokenInterceptor extends HandlerInterceptorAdapter {
+public class TokenInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -35,7 +35,7 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
                     errorMsg(1, response);
                     return false;
                 } else {
-                    return super.preHandle(request, response, handler);
+                    return HandlerInterceptor.super.preHandle(request, response, handler);
                 }
             } catch (Exception e) {
                 errorMsg(0, response);
