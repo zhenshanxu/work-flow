@@ -3,7 +3,6 @@ package com.example.workflow.api;
 import com.example.workflow.bean.ResponseBean;
 import com.example.workflow.bean.UserBean;
 import com.example.workflow.service.IUserService;
-import com.example.workflow.utils.CommonUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @BelongsProject: work-flow
