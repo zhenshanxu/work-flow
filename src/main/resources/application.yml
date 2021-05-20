@@ -1,5 +1,5 @@
 server:
-  port: 8098
+  port: 80
 spring:
   mvc:
     static-path-pattern: ##/static/**
@@ -17,6 +17,16 @@ spring:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
+  boot:
+    admin:
+      client:
+        url: http://localhost:8098/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 
 mybatis:
   #  config-location: classpath:mybatis.cfg.xml
@@ -43,3 +53,9 @@ mybatis:
     mongodb:
       uri: mongodb://root:password@host:port/user # password 密码 @ host主机地址:post 端口/用户名
       database: test # 仓库
+
+
+
+logging:
+  file:
+    path: 'E:\8_log\Downloads/spring-boot-admin-client.log'
