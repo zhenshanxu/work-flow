@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 public class RedisService {
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<String,Object> redisTemplate;
 
     // =============================common============================
 
@@ -82,7 +82,7 @@ public class RedisService {
             if (key.length == 1) {
                 redisTemplate.delete(key[0]);
             } else {
-                redisTemplate.delete(CollectionUtils.arrayToList(key));
+                redisTemplate.delete((Collection<String>) CollectionUtils.arrayToList(key));
             }
         }
     }
@@ -92,8 +92,7 @@ public class RedisService {
      *
      * @param keys 可以传一个值 或多个
      */
-    @SuppressWarnings("unchecked")
-    public void del(Collection keys) {
+    public void del(Collection<String> keys) {
         if (org.apache.commons.collections.CollectionUtils.isNotEmpty(keys)) {
             redisTemplate.delete(keys);
         }
@@ -295,7 +294,7 @@ public class RedisService {
      * @param key   键 不能为null
      * @param items 项 可以使多个 不能为null
      */
-    public void hdel(String key, Collection items) {
+    public void hdel(String key, Collection<String> items) {
         redisTemplate.opsForHash().delete(key, items.toArray());
     }
 
@@ -396,7 +395,7 @@ public class RedisService {
      * @param values 值 可以是多个
      * @return 成功个数
      */
-    public long sSet(String key, Collection values) {
+    public long sSet(String key, Collection<String> values) {
         try {
             return redisTemplate.opsForSet().add(key, values.toArray());
         } catch (Exception e) {
