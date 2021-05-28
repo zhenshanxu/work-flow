@@ -22,6 +22,15 @@ public class MessageBombing {
 
     private static int stop = 0;
 
+    private static String promptMessage = "在这输入";
+
+    /**
+     * 执行方法
+     *
+     * @param sentence
+     * @param cycleTime
+     * @throws AWTException
+     */
     public static void messageBombing(String sentence, int cycleTime) throws AWTException {
         //以下三行为将上述字符串放到剪切板内，相当于做了一次复制操作
         Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -31,6 +40,7 @@ public class MessageBombing {
         robot.delay(3000);//延迟三秒，主要是为了预留出打开窗口的时间，括号内的单位为毫秒
         for (int i = 1; i <= cycleTime; i++) {//循环十次，当然，如果爱得深，你死循环也没问题
             if (stop != 0) {
+                System.exit(0); // 退出程序
                 break;
             }
             //以下两行按下了ctrl+v，完成粘贴功能
@@ -58,21 +68,32 @@ public class MessageBombing {
     public static void main(String[] args) throws AWTException {
         String sentence = null;// 定义要发的话
         String cycleTime = null;//定义消息循环次数
-
+        int count = 0;
+        int counter = 0;
         JOptionPane.showMessageDialog(jPanel, "消息轰炸模块已开启", "友情提示", JOptionPane.WARNING_MESSAGE);
         //输入轰炸文字
         do {
-            sentence = (String) JOptionPane.showInputDialog(null, "请输入你你想轰炸的内容：\n", "友情提示", JOptionPane.PLAIN_MESSAGE, icon, null, "在这输入");
+            if (count == 0) {
+                sentence = (String) JOptionPane.showInputDialog(null, "请输入你想轰炸的内容：\n", "友情提示", JOptionPane.PLAIN_MESSAGE, icon, null, "在这输入");
+            } else {
+                sentence = (String) JOptionPane.showInputDialog(null, "请输入非空字符：\n", "友情提示", JOptionPane.PLAIN_MESSAGE, icon, null, "在这输入");
+            }
+            count++;
             if (sentence == null) {
                 JOptionPane.showMessageDialog(jPanel, "消息轰炸模块已退出", "友情提示", JOptionPane.WARNING_MESSAGE);
                 System.exit(0);//程序退出
                 break;
             }
-        } while ("".equals(sentence.trim()));
+        } while ("".equals(sentence.trim()) || promptMessage.equals(sentence.trim()));
 
         //输入轰炸次数
         do {
-            cycleTime = (String) JOptionPane.showInputDialog(null, "请输入你你想轰炸的次数：\n", "友情提示", JOptionPane.PLAIN_MESSAGE, icon, null, "在这输入数字");
+            if (counter == 0) {
+                cycleTime = (String) JOptionPane.showInputDialog(null, "请输入你想轰炸的次数：\n", "友情提示", JOptionPane.PLAIN_MESSAGE, icon, null, "在这输入数字");
+            } else {
+                cycleTime = (String) JOptionPane.showInputDialog(null, "请输入非空数字：\n", "友情提示", JOptionPane.PLAIN_MESSAGE, icon, null, "在这输入数字");
+            }
+            counter++;
             if (cycleTime == null) {
                 JOptionPane.showMessageDialog(jPanel, "消息轰炸模块已退出", "友情提示", JOptionPane.WARNING_MESSAGE);
                 System.exit(0);//程序退出
