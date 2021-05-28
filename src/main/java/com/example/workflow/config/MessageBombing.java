@@ -77,7 +77,7 @@ public class MessageBombing {
                 break;
             }
         } while (!isInteger(cycleTime) || Integer.parseInt(cycleTime) == 0);
-        JOptionPane.showMessageDialog(jPanel, "消息轰炸即将开...\n请选择需要轰炸的对象", "友情提示", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(jPanel, "消息轰炸即将开...\n请选择需要轰炸的对象聊天框", "友情提示", JOptionPane.WARNING_MESSAGE);
         messageBombing(sentence, Integer.parseInt(cycleTime));
         JOptionPane.showMessageDialog(jPanel, "消息轰炸已完成", "友情提示", JOptionPane.WARNING_MESSAGE);
 
