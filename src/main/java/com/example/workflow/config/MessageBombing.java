@@ -65,6 +65,7 @@ public class MessageBombing {
             sentence = (String) JOptionPane.showInputDialog(null, "请输入你你想轰炸的内容：\n", "友情提示", JOptionPane.PLAIN_MESSAGE, icon, null, "在这输入");
             if (sentence == null) {
                 JOptionPane.showMessageDialog(jPanel, "消息轰炸模块已退出", "友情提示", JOptionPane.WARNING_MESSAGE);
+                System.exit(0);//程序退出
                 break;
             }
         } while ("".equals(sentence.trim()));
@@ -74,6 +75,7 @@ public class MessageBombing {
             cycleTime = (String) JOptionPane.showInputDialog(null, "请输入你你想轰炸的次数：\n", "友情提示", JOptionPane.PLAIN_MESSAGE, icon, null, "在这输入数字");
             if (cycleTime == null) {
                 JOptionPane.showMessageDialog(jPanel, "消息轰炸模块已退出", "友情提示", JOptionPane.WARNING_MESSAGE);
+                System.exit(0);//程序退出
                 break;
             }
         } while (!isInteger(cycleTime) || Integer.parseInt(cycleTime) == 0);
